@@ -1,4 +1,5 @@
 import type { NextAuthConfig } from 'next-auth';
+import { NextResponse } from 'next/server';
 
 export const authConfig = {
     pages: {
@@ -21,7 +22,7 @@ export const authConfig = {
 
             if (!isLoggedIn) return false;
             if (isLoggedIn && onLoginPage)
-                return Response.redirect(
+                return NextResponse.redirect(
                     `${nextUrl?.searchParams?.get("callbackUrl") ||
                     new URL(`${nextUrl.basePath}/dashboard`, nextUrl)
                     }`
